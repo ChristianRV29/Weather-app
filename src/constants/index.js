@@ -5,31 +5,15 @@ const optsMenu = [
     choices: [
       {
         value: 1,
-        name: `${"1".green}. Create a task`,
+        name: `${"1".green}. Search a city`,
       },
       {
         value: 2,
-        name: `${"2".green}. List all tasks`,
+        name: `${"2".green}. Search history`,
       },
       {
         value: 3,
-        name: `${"3".green}. List completed tasks`,
-      },
-      {
-        value: 4,
-        name: `${"4".green}. List pending tasks`,
-      },
-      {
-        value: 5,
-        name: `${"5".green}. Complete a task`,
-      },
-      {
-        value: 6,
-        name: `${"6".green}. Delete a task`,
-      },
-      {
-        value: 7,
-        name: `${"7".green}. Exit`,
+        name: `${"3".green}. Exit`,
       },
     ],
     message: "What do you want to do?\n",
@@ -54,8 +38,8 @@ const confirmMessage = {
 
 const inputQuestion = [
   {
-    message: "Enter a description for the task",
-    name: "description",
+    message: "Enter the name of the city",
+    name: "name",
     type: "input",
     validate(value) {
       if (value.length === 0) {
@@ -66,23 +50,9 @@ const inputQuestion = [
   },
 ];
 
-const tasksOptions = {
-  message: "Choose one task or more for being completed",
-  name: "tasksId",
-  type: "checkbox",
-};
-
-const tasksOptionsRemoving = {
-  message: "Choose one or more task for being deleted",
-  name: "tasksId",
-  type: "checkbox",
-};
-
 module.exports = {
   confirmMessage,
   inputQuestion,
   optsMenu,
   pauseMessage,
-  tasksOptions,
-  tasksOptionsRemoving,
 };
