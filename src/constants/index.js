@@ -38,8 +38,8 @@ const confirmMessage = {
 
 const inputQuestion = [
   {
-    message: "Enter the name of the city",
-    name: "name",
+    message: "Enter a city",
+    name: "city",
     type: "input",
     validate(value) {
       if (value.length === 0) {
