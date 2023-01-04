@@ -1,4 +1,4 @@
-const { showMenu, doPause } = require("./src/helpers/inquirer");
+const { showMenu, doPause, askCity } = require("./src/helpers/inquirer");
 
 const main = async () => {
   let hasLeft = false;
@@ -6,7 +6,8 @@ const main = async () => {
     const option = await showMenu();
     switch (option) {
       case 1:
-        console.log("Searching a city");
+        const city = await askCity();
+
         break;
       case 2:
         console.log("Showing a city");
