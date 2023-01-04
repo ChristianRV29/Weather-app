@@ -7,8 +7,7 @@ class Searches {
     try {
       const { data } = await mapboxAPI.get(`/${cityName}.json`, {
         params: {
-          access_token:
-            "pk.eyJ1IjoiY2hyaXN0aWFucnYyOSIsImEiOiJjbGNpNDEzYmg1ZG80M3FwN2RjaGV6OHFxIn0.e2XElgXDHSt9uZs6u4tr_w",
+          access_token: process.env.MAPBOX_TOKEN,
           language: "en",
           limit: 5,
         },
