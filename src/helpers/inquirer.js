@@ -28,6 +28,20 @@ const showMenu = async () => {
   }
 };
 
+const askCity = async () => {
+  try {
+    const prompt = inquirer.createPromptModule();
+    const { city } = await prompt(inputQuestion);
+
+    return city;
+  } catch (err) {
+    console.log(
+      "🐞 ~ It just happened an error when trying to seach the city: ",
+      err?.message || err
+    );
+  }
+};
+
 const doPause = async () => {
   try {
     const prompt = inquirer.createPromptModule();
@@ -64,6 +78,7 @@ const readInput = async () => {
 };
 
 module.exports = {
+  askCity,
   confirmStep,
   doPause,
   readInput,
