@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const { showMenu, doPause, askCity } = require("./src/helpers/inquirer");
 const Searches = require("./src/models/searches");
 
