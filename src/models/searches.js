@@ -13,7 +13,12 @@ class Searches {
         },
       });
 
-      console.log(data?.features);
+      return data.features.map((it) => ({
+        id: it.id,
+        latitude: it.center[1],
+        longitude: it.center[0],
+        name: it.place_name,
+      }));
     } catch (err) {
       console.log(
         "🚀 ~ file: searches.js:11 ~ Search ~ searchCity ~ err",
