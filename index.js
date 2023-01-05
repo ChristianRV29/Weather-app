@@ -1,6 +1,11 @@
 require("dotenv").config();
 
-const { showMenu, doPause, askCity } = require("./src/helpers/inquirer");
+const {
+  showMenu,
+  doPause,
+  askCity,
+  showPlacesAsOptions,
+} = require("./src/helpers/inquirer");
 const Searches = require("./src/models/searches");
 
 const main = async () => {
@@ -13,8 +18,8 @@ const main = async () => {
     switch (option) {
       case 1:
         const city = await askCity();
-
-        searches.searchCity(city);
+        const cities = await searches.searchCity(city);
+        await showPlacesAsOptions(cities);
 
         break;
       case 2:
