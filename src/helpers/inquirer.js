@@ -8,6 +8,36 @@ const {
   confirmMessage,
 } = require("./../constants");
 
+const showPlacesAsOptions = async (places = []) => {
+  try {
+    const prompt = inquirer.createPromptModule();
+
+    const choices = places.map((it, index) => ({
+      value: it.id,
+      name: `${colors.green(index + 1)}. ${it.name}`,
+    }));
+
+    choices.unshift({
+      value: null,
+      name: `${colors.green(0)}. Cancel`,
+    });
+
+    const { placeId } = await prompt({
+      choices,
+      message: "What place are you looking for?",
+      name: "placeId",
+      type: "list",
+    });
+
+    return placeId;
+  } catch (err) {
+    console.log(
+      "🐞 ~ It just happened an error when trying to show the menu: ",
+      err?.message || err
+    );
+  }
+};
+
 const showMenu = async () => {
   try {
     console.clear();
@@ -83,4 +113,5 @@ module.exports = {
   doPause,
   readInput,
   showMenu,
+  showPlacesAsOptions,
 };
