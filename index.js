@@ -19,7 +19,9 @@ const main = async () => {
       case 1:
         const city = await askCity();
         const cities = await searches.searchCity(city);
-        await showPlacesAsOptions(cities);
+        const cityInfo = await showPlacesAsOptions(cities);
+
+        await searches.searchCityWeather(cityInfo);
 
         break;
       case 2:
