@@ -1,4 +1,4 @@
-const mapboxAPI = require("./../api");
+const { mapboxAPI, openwatherAPI } = require("./../api");
 
 class Searches {
   constructor() {}
@@ -22,6 +22,29 @@ class Searches {
     } catch (err) {
       console.log(
         "🚀 ~ file: searches.js:11 ~ Search ~ searchCity ~ err",
+        err?.message || err
+      );
+    }
+  }
+
+  async searchCityWeather(city) {
+    try {
+      const { latitude, longitude } = city;
+
+      const { data } = await openwatherAPI.get("/weather", {
+        params: {
+          lat: latitude,
+          lon: longitude,
+          appid: process.env.OPENWATHER_KEY,
+        },
+      });
+
+      console.log(data);
+
+      return data;
+    } catch (err) {
+      console.log(
+        "🚀 ~ file: searches.js:44 ~ Searches ~ searchCityWeather ~ err",
         err?.message || err
       );
     }

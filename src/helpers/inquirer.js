@@ -13,7 +13,7 @@ const showPlacesAsOptions = async (places = []) => {
     const prompt = inquirer.createPromptModule();
 
     const choices = places.map((it, index) => ({
-      value: it.id,
+      value: it,
       name: `${colors.green(index + 1)}. ${it.name}`,
     }));
 
@@ -22,14 +22,14 @@ const showPlacesAsOptions = async (places = []) => {
       name: `${colors.green(0)}. Cancel`,
     });
 
-    const { placeId } = await prompt({
+    const { cityInfo } = await prompt({
       choices,
       message: "What place are you looking for?",
-      name: "placeId",
+      name: "cityInfo",
       type: "list",
     });
 
-    return placeId;
+    return cityInfo;
   } catch (err) {
     console.log(
       "🐞 ~ It just happened an error when trying to show the menu: ",
