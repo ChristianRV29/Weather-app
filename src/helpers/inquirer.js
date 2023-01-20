@@ -8,6 +8,26 @@ const {
   confirmMessage,
 } = require("./../constants");
 
+const showCityWeather = (cityName, weatherData) => {
+  try {
+    const title = `${cityName}'s weather`;
+    const divider = `${"=".repeat(title.length).green}`;
+
+    console.clear();
+    console.log(divider);
+    console.log(title.white);
+    console.log(divider, "\n");
+    console.log(`${"Description: ".cyan}${weatherData.description}`);
+    console.log(`${"Latitude: ".cyan}${weatherData.latitude}`);
+    console.log(`${"Longitude: ".cyan}${weatherData.longitude}`);
+    console.log(`${"Max temp: ".cyan}${weatherData.max}`);
+    console.log(`${"Min temp: ".cyan}${weatherData.min}`);
+    console.log(`${"Current temp: ".cyan}${weatherData.temp}\n`);
+  } catch (err) {
+    console.log("🚀 ~ file: inquirer.js:27 ~ showCityWeather ~ err", err);
+  }
+};
+
 const showPlacesAsOptions = async (places = []) => {
   try {
     const prompt = inquirer.createPromptModule();
@@ -112,6 +132,7 @@ module.exports = {
   confirmStep,
   doPause,
   readInput,
+  showCityWeather,
   showMenu,
   showPlacesAsOptions,
 };
