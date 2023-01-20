@@ -5,6 +5,7 @@ const {
   doPause,
   askCity,
   showPlacesAsOptions,
+  showCityWeather,
 } = require("./src/helpers/inquirer");
 const Searches = require("./src/models/searches");
 
@@ -21,7 +22,9 @@ const main = async () => {
         const cities = await searches.searchCity(city);
         const cityInfo = await showPlacesAsOptions(cities);
 
-        await searches.searchCityWeather(cityInfo);
+        const data = await searches.searchCityWeather(cityInfo);
+
+        await showCityWeather(city, data);
 
         break;
       case 2:

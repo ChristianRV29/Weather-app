@@ -39,9 +39,16 @@ class Searches {
         },
       });
 
-      console.log(data);
+      const { weather, main } = data;
 
-      return data;
+      return {
+        description: weather[0]?.description,
+        latitude,
+        longitude,
+        max: main.temp_max,
+        min: main.temp_min,
+        temp: main.temp,
+      };
     } catch (err) {
       console.log(
         "🚀 ~ file: searches.js:44 ~ Searches ~ searchCityWeather ~ err",
