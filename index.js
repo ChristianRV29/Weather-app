@@ -6,6 +6,7 @@ const {
   askCity,
   showPlacesAsOptions,
   showCityWeather,
+  showHistory,
 } = require("./src/helpers/inquirer");
 const Searches = require("./src/models/searches");
 
@@ -22,13 +23,14 @@ const main = async () => {
         const cities = await searches.searchCity(city);
         const cityInfo = await showPlacesAsOptions(cities);
 
-        const data = await searches.searchCityWeather(cityInfo);
+        if (!cityInfo) continue;
 
+        const data = await searches.searchCityWeather(cityInfo);
         await showCityWeather(city, data);
 
         break;
       case 2:
-        console.log("Showing a city");
+        await showHistory(searches.history);
         break;
       case 3:
         hasLeft = true;
