@@ -127,12 +127,43 @@ const readInput = async () => {
   return description;
 };
 
+const showHistory = async (history = []) => {
+  try {
+    const prompt = inquirer.createPromptModule();
+
+    const choices = history.map((it, index) => ({
+      value: it,
+      name: `${colors.green(index + 1)}. ${it}`,
+    }));
+
+    choices.unshift({
+      value: null,
+      name: `${colors.green(0)}. Cancel`,
+    });
+
+    const { cityInfo } = await prompt({
+      choices,
+      message: "What place are you looking for?",
+      name: "cityInfo",
+      type: "list",
+    });
+
+    return cityInfo;
+  } catch (err) {
+    console.log(
+      "🐞 ~ It just happened an error when trying to show the menu: ",
+      err?.message || err
+    );
+  }
+};
+
 module.exports = {
   askCity,
   confirmStep,
   doPause,
   readInput,
   showCityWeather,
+  showHistory,
   showMenu,
   showPlacesAsOptions,
 };

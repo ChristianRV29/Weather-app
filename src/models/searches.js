@@ -1,7 +1,16 @@
 const { mapboxAPI, openwatherAPI } = require("./../api");
-
 class Searches {
-  constructor() {}
+  history = [];
+
+  constructor() {
+    this.history = [];
+  }
+
+  saveHistory(cityName = "") {
+    if (!this.history.includes(cityName)) {
+      this.history.unshift(cityName);
+    }
+  }
 
   async searchCity(cityName = "") {
     try {
@@ -40,6 +49,8 @@ class Searches {
       });
 
       const { weather, main } = data;
+
+      await this.saveHistory(city.name);
 
       return {
         description: weather[0]?.description,
